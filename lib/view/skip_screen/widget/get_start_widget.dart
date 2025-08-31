@@ -1,5 +1,6 @@
 import 'package:e_com_bloc/utils/app_colors_path.dart';
 import 'package:e_com_bloc/utils/app_image_png_path.dart';
+import 'package:e_com_bloc/utils/app_size.dart';
 import 'package:e_com_bloc/view/skip_screen/widget/custom_widget_get_start.dart';
 import 'package:flutter/widgets.dart';
 class GetStartWidget extends StatelessWidget {
@@ -17,6 +18,7 @@ class GetStartWidget extends StatelessWidget {
                 height: 500,
                 width: 200,
                 color: AppColorsPath.green,
+                border: Border.all(width: AppSize.s2,color: AppColorsPath.red.withValues(alpha: 0.2,),),
                 borderRadius: BorderRadius.circular(100),
               ),
             ],
@@ -28,7 +30,7 @@ class GetStartWidget extends StatelessWidget {
                 image: AppImagePngPath.kimli,
                 height: 300,
                 width: 200,
-                color: AppColorsPath.green,
+                border: Border.all(width: AppSize.s2,color: AppColorsPath.red.withValues(alpha: 0.2,),),
                 borderRadius: BorderRadius.circular(100),
               ),
               SizedBox(height: 10),
@@ -36,7 +38,7 @@ class GetStartWidget extends StatelessWidget {
                 image: AppImagePngPath.peakrat,
                 height: 200,
                 width: 200,
-                color: AppColorsPath.green,
+                border: Border.all(width: AppSize.s2,color: AppColorsPath.red.withValues(alpha: 0.2,),),
                 borderRadius: BorderRadius.circular(100),
               ),
             ],
