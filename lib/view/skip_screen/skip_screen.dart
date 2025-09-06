@@ -11,7 +11,6 @@ class SkipScreen extends StatefulWidget {
 class _SkipScreenState extends State<SkipScreen> {
   final PageController _controller = PageController();
   int _currentIndex = 0;
-
   void _nextPage() {
     if (_currentIndex < skipModelData.length - 1) {
       _controller.nextPage(
@@ -28,7 +27,6 @@ class _SkipScreenState extends State<SkipScreen> {
       );
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
