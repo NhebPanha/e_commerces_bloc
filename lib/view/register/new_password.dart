@@ -2,7 +2,6 @@ import 'package:e_com_bloc/components/button_next_page.dart';
 import 'package:e_com_bloc/utils/app_colors_path.dart';
 import 'package:e_com_bloc/utils/app_size.dart';
 import 'package:e_com_bloc/utils/text_input_field.dart';
-import 'package:e_com_bloc/utils/verify_code.dart';
 import 'package:e_com_bloc/view/register/complete_profile.dart';
 import 'package:flutter/material.dart';
 
