@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "914928348091",
+    "project_id": "loginlogout-50b1a",
+    "storage_bucket": "loginlogout-50b1a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:914928348091:android:b1b4f1a4776ed67fce729e",
+        "android_client_info": {
+          "package_name": "com.example.e_com_bloc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCv1LVT57k71-JySPSM9gRa1woHGv7eZAc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
