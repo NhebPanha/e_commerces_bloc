@@ -1,7 +1,7 @@
 import 'package:e_com_bloc/components/button_next_page.dart';
 import 'package:e_com_bloc/utils/app_colors_path.dart';
+import 'package:e_com_bloc/utils/app_label.dart';
 import 'package:e_com_bloc/utils/app_size.dart';
-import 'package:e_com_bloc/utils/text_input_field.dart';
 import 'package:e_com_bloc/view/register/complete_profile.dart';
 import 'package:e_com_bloc/view/register/sign_up.dart';
 import 'package:e_com_bloc/view/register/verify_code.dart';
@@ -9,14 +9,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({super.key});
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SignInScreenState extends State<SignInScreen> {
   bool _obscurePassword = true;
   final _auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormFieldState>();
@@ -57,48 +57,46 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
       appBar: AppBar(automaticallyImplyLeading: false),
       body: Padding(
-        padding: const EdgeInsets.only(left: 25, right: 15),
+        padding: const EdgeInsets.only(left: 10, right: 10),
         child: Form(
           key: _formKey,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Center(
                 child: Column(
                   children: [
-                    Text("Sign In", style: TextStyle(fontSize: AppSize.s25)),
+                    AppLabel(text: "", size: 10),
+                    AppLabel(text: "Sign In", size: AppSize.s25),
                     const SizedBox(height: 4),
-                    const Text("Please enter your credentials using our app"),
+                    const AppLabel(text: "Please enter your credentials using our app",size: AppSize.s16,textAlign: TextAlign.center,),
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
-              Row(
-                children: [
-                  Container(
-                    width: 350,
-                    height: 50,
-                    child: TextFormField(
-                      controller: _emailController,
-                      decoration: InputDecoration(
-                        hintText: "Enter Email",
-                        prefixIcon: Icon(
-                          Icons.email_outlined,
-                          color: AppColorsPath.grey,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
+              SizedBox(height: 20),
+              Row(children: [AppLabel(text: "Enter Email", size: AppSize.s19)]),
+              SizedBox(height: 10,),
+              Container(
+                height: 50,
+                child: TextFormField(
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                    hintText: "Enter Email",
+                    prefixIcon: Icon(
+                      Icons.email_outlined,
+                      color: AppColorsPath.grey,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
                     ),
                   ),
-                ],
+                ),
               ),
               SizedBox(height: 10),
-              Row(children: [Text("Password", style: TextStyle(fontSize: 20))]),
-              const SizedBox(height: 10),
+              Row(children: [AppLabel(text: "Password", size: AppSize.s19)]),
+               SizedBox(height: 10),
               Container(
-                width: 350,
                 height: 50,
                 child: TextFormField(
                   controller: _passwordController,
@@ -145,24 +143,24 @@ class _SignInState extends State<SignIn> {
                   ),
                 ),
               ),
-
               SizedBox(height: 40),
-              Container(
-                margin: EdgeInsets.only(left: 25,right: 15),
-                width: 300,
-                height: 50,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(223, 135, 15, 55),
-                    foregroundColor: Colors.white,
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColorsPath.fromARGB2,
+                  foregroundColor: AppColorsPath.white,
+                ),
+                onPressed: _login,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: 100,
+                    right: 100,
+                    top: 10,
+                    bottom: 10,
                   ),
-                  onPressed: _login,
-                  child: const Text(
-                    "Login",
-                    style: TextStyle(fontSize: AppSize.s18),
-                  ),
+                  child: AppLabel(text: "Login", size: AppSize.s18),
                 ),
               ),
+
               const SizedBox(height: 50),
               GestureDetector(
                 onTap: () {
@@ -180,3 +178,4 @@ class _SignInState extends State<SignIn> {
     );
   }
 }
+
