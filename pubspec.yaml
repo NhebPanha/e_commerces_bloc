@@ -57,7 +57,11 @@ flutter:
     - family: dynapuff
       fonts:
         - asset: assets/fonts/dynapuff.ttf
+    - family: dynapuff1
+      fonts:
+        - asset: assets/fonts/DynaPuff-VariableFont_wdth,wght.ttf
   #         weight: 700
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+#assets/fonts/DynaPuff-VariableFont_wdth,wght.ttf

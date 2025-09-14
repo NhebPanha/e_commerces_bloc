@@ -65,7 +65,7 @@ class _VerifyCodeState extends State<VerifyCode> {
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => const NewPassword()));
             },
-            child: Row(children: [Button_Next_Page(txt: "Verify")])),
+            child: Row(children: [Button_Next_Page(txt: "Verify",onClick: (){},)])),
         ],
       ),
     );

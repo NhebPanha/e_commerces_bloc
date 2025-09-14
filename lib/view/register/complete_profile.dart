@@ -2,13 +2,14 @@ import 'package:e_com_bloc/components/button_next_page.dart';
 import 'package:e_com_bloc/utils/app_colors_path.dart';
 import 'package:e_com_bloc/utils/app_label.dart';
 import 'package:e_com_bloc/utils/app_size.dart';
+import 'package:e_com_bloc/utils/config_routs.dart';
 import 'package:e_com_bloc/utils/text_input_field.dart';
+import 'package:e_com_bloc/view/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class CompleteProfile extends StatefulWidget {
   const CompleteProfile({super.key});
-
   @override
   State<CompleteProfile> createState() => _CompleteProfileState();
 }
@@ -57,50 +58,47 @@ class _CompleteProfileState extends State<CompleteProfile> {
                   Positioned(
                     right: 5,
                     bottom: 0,
-                    child: CircleAvatar(
-                      child: Icon(
-                        Icons.edit,
-                        size: 15,
-                        color: AppColorsPath.white,
+                    child: InkWell(
+                      onTap: (){
+                        print("Hello bruh!");
+                      },
+                      child: CircleAvatar(
+                        radius: 11,
+                        backgroundColor: AppColorsPath.fromARGB,
+                        child: Icon(
+                          Icons.edit,
+                          size: 15,
+                          color: AppColorsPath.white,
+                        ),
                       ),
-                      radius: 11,
-                      backgroundColor: AppColorsPath.fromARGB,
                     ),
                   ),
                 ],
               ),
             ),
-            Container(
-              margin: EdgeInsets.only(left: 15),
-              child: Row(children: [AppLabel(text: "Name", size: AppSize.s16)]),
-            ),
-
-            const TextInputField(icons: Icons.person, txt: "Millie Millie"),
+            Row(children: [AppLabel(text: "Name", size: AppSize.s16)]),
+            TextInputField(icons: Icons.person, txt: "Millie Millie"),
             SizedBox(height: 10),
-            Container(
-              margin: EdgeInsets.only(left: 15),
-              child: Row(
-                children: [AppLabel(text: "Email", size: AppSize.s16)],
-              ),
-            ),
+            Row(children: [AppLabel(text: "Email", size: AppSize.s16)]),
             const TextInputField(
               icons: Icons.email_outlined,
               txt: "Mille0678@gmail.com",
             ),
             SizedBox(height: 10),
-            Container(
-              margin: EdgeInsets.only(left: 15),
-              child: Row(
-                children: [
-                  Text("Genter", style: TextStyle(fontSize: AppSize.s16)),
-                ],
-              ),
+            Row(
+              children: [
+                Text("Genter", style: TextStyle(fontSize: AppSize.s16)),
+              ],
             ),
-            const TextInputField(icons: Icons.person, txt: "Femail"),
-            const SizedBox(height: 25),
+            TextInputField(icons: Icons.person, txt: "Femail"),
+            SizedBox(height: 25),
             SizedBox(
               width: double.infinity,
-              child: Button_Next_Page(txt: "Complete Profile"),
+              child: Button_Next_Page(txt: "Complete Profile",
+              onClick: (){
+                print("Hello bruh!");
+                ConfigRouter.push(context, HomeScreen());
+              },),
             ),
           ],
         ),
