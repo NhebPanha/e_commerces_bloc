@@ -1,9 +1,9 @@
-import 'package:e_com_bloc/components/button_next_page.dart';
-import 'package:e_com_bloc/utils/app_colors_path.dart';
-import 'package:e_com_bloc/utils/app_size.dart';
-import 'package:e_com_bloc/utils/verify_code.dart';
-import 'package:e_com_bloc/view/register/new_password.dart';
+import 'package:e_com_bloc/view/register/sent_otp.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class VerifyCode extends StatefulWidget {
   const VerifyCode({super.key});
@@ -13,61 +13,55 @@ class VerifyCode extends StatefulWidget {
 }
 
 class _VerifyCodeState extends State<VerifyCode> {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  final TextEditingController mobileTextEditController =
+      TextEditingController();
+  final TextEditingController otpController = TextEditingController();
+  String? verficationId1='';
+  User? user;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        children: [
-          Container(
-            margin: EdgeInsets.only(left: 80, top: 8, right: 80),
-            child: Column(
-              children: [
-                Text(
-                  "Verify Code",
-                  style: TextStyle(
-                    fontSize: AppSize.s25,
-                    color: AppColorsPath.black,
-                  ),
-                ),
-                Text(
-                  "   Server generates a random numeric",
-                  style: TextStyle(
-                    fontSize: AppSize.s13,
-                    color: AppColorsPath.grey,
-                  ),
-                ),
-                Text(
-                  "or alphanumeric code",
-                  style: TextStyle(
-                    fontSize: AppSize.s12,
-                    color: AppColorsPath.fromARGB,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(child: Row(children: [verify_code()])),
-          SizedBox(height: 30),
-          Text(
-            " Doesn't receive OTP?",
-            style: TextStyle(fontSize: AppSize.s13, color: AppColorsPath.grey),
-          ),
-          Text(
-            "Resend new code.",
-            style: TextStyle(
-              fontSize: AppSize.s12,
-              color: AppColorsPath.fromARGB,
-            ),
-          ),
-          SizedBox(height: 20,),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const NewPassword()));
-            },
-            child: Row(children: [Button_Next_Page(txt: "Verify")])),
-        ],
-      ),
+    return Scaffold(body: Center(child: Text('Verify Code Screen')));
+  }
+
+  Future<void> setOTP() async {
+    try {
+      await auth.verifyPhoneNumber(
+        phoneNumber: "+855 ${mobileTextEditController.text}",
+        verificationCompleted: (PhoneAuthCredential phoneAuthCredential) async {
+          await auth.signInWithCredential(phoneAuthCredential);
+          Get.showSnackbar(
+            const GetSnackBar(message: "Phone number automatically verified"),
+          );
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          if (e.code == 'invalid-phone-number') {
+            print("The provided number is not valid");
+          }
+        },
+        codeSent: (verificationId, forceResendingToken) {
+          verficationId1 = verificationId;
+          Get.to(() => PhoneAuthScreen());
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {
+          print('Auto retrieval timeout');
+        },
+      );
+    } catch (e) {
+      print("error doing sent OTP--->$e");
+    }
+  }
+
+  Future<void> verifyOTP() async {
+    final PhoneAuthCredential credentail = PhoneAuthProvider.credential(
+      verificationId: verficationId1 ?? "",
+      smsCode: otpController.text,
     );
+    UserCredential userCredential = await auth.signInWithCredential(credentail);
+    Get.showSnackbar(
+      GetSnackBar(message: "User successfully sign up phone number"),
+    );
+    user = userCredential.user;
   }
 }

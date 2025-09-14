@@ -3,6 +3,7 @@ import 'package:e_com_bloc/utils/app_colors_path.dart';
 import 'package:e_com_bloc/utils/app_size.dart';
 import 'package:e_com_bloc/utils/text_input_field.dart';
 import 'package:e_com_bloc/view/register/complete_profile.dart';
+import 'package:e_com_bloc/view/register/forgot_password.dart';
 import 'package:e_com_bloc/view/register/sign_up.dart';
 import 'package:e_com_bloc/view/register/verify_code.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -134,7 +135,7 @@ class _SignInState extends State<SignIn> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => VerifyCode()),
+                    MaterialPageRoute(builder: (context) => ForgotPassword()),
                   );
                 },
                 child: Align(
@@ -148,7 +149,7 @@ class _SignInState extends State<SignIn> {
 
               SizedBox(height: 40),
               Container(
-                margin: EdgeInsets.only(left: 25,right: 15),
+                margin: EdgeInsets.only(left: 25, right: 15),
                 width: 300,
                 height: 50,
                 child: ElevatedButton(
