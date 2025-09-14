@@ -6,12 +6,13 @@ import 'package:e_com_bloc/utils/config_routs.dart';
 import 'package:e_com_bloc/view/register/sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/export.dart';
+
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
   @override
   State<SignUp> createState() => _SignUpState();
 }
-
 class _SignUpState extends State<SignUp> {
   bool _obscurePassword = true;
   final _auth = FirebaseAuth.instance;
@@ -37,7 +38,6 @@ class _SignUpState extends State<SignUp> {
         context,
       ).showSnackBar(SnackBar(content: Text("SignUp successful!")));
       ConfigRouter.push(context, SignInScreen());
-
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         setState(() => _errorMessage = "This email is already registered.");
@@ -52,7 +52,6 @@ class _SignUpState extends State<SignUp> {
       }
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +60,7 @@ class _SignUpState extends State<SignUp> {
         child: Form(
           key: _formkey,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center, 
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
@@ -96,9 +95,7 @@ class _SignUpState extends State<SignUp> {
                 child: Column(
                   children: [
                     Row(
-                      children: [
-                        AppLabel(text: "Username", size: AppSize.s18),
-                      ],
+                      children: [AppLabel(text: "Username", size: AppSize.s18)],
                     ),
                     const SizedBox(height: 10),
                     SizedBox(
@@ -118,9 +115,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                     SizedBox(height: 10),
-                    Row(
-                      children: [AppLabel(text: "Email", size: AppSize.s18)],
-                    ),
+                    Row(children: [AppLabel(text: "Email", size: AppSize.s18)]),
                     const SizedBox(height: 10),
                     SizedBox(
                       height: 50,
@@ -140,9 +135,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                     SizedBox(height: 10),
                     Row(
-                      children: [
-                        AppLabel(text: "Password", size: AppSize.s18),
-                      ],
+                      children: [AppLabel(text: "Password", size: AppSize.s18)],
                     ),
                     const SizedBox(height: 10),
                     SizedBox(
@@ -178,35 +171,31 @@ class _SignUpState extends State<SignUp> {
                   ],
                 ),
               ),
-              
-              
+
               SizedBox(height: 30),
               Container(
                 height: 50,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor:AppColorsPath.fromARGB,
+                    backgroundColor: AppColorsPath.fromARGB,
                     foregroundColor: AppColorsPath.white,
                   ),
                   onPressed: _signUp,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 100.0,vertical: 5),
-                    child: AppLabel(text:
-                      "Sign Up",
-                     size: AppSize.s18,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 100.0,
+                      vertical: 5,
                     ),
+                    child: AppLabel(text: "Sign Up", size: AppSize.s18),
                   ),
                 ),
               ),
               SizedBox(height: 20),
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SignInScreen()),
-                  );
+              LoginWithWidget(
+                txt: "Login",
+                onClick: () {
+                  ConfigRouter.push(context, SignInScreen());
                 },
-                child: Login_With(txt: "Login"),
               ),
             ],
             //]

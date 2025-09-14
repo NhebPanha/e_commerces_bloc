@@ -100,7 +100,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
             const SizedBox(height: 25),
             SizedBox(
               width: double.infinity,
-              child: Button_Next_Page(txt: "Complete Profile"),
+              child: ButtomNextPage(txt: "Complete Profile"),
             ),
           ],
         ),
