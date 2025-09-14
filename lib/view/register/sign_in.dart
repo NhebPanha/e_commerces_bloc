@@ -3,6 +3,8 @@ import 'package:e_com_bloc/utils/app_colors_path.dart';
 import 'package:e_com_bloc/utils/app_label.dart';
 import 'package:e_com_bloc/utils/app_size.dart';
 import 'package:e_com_bloc/view/register/complete_profile.dart';
+import 'package:e_com_bloc/view/register/forgot_password.dart';
+import 'package:e_com_bloc/view/register/sent_otp_phonenumber.dart';
 import 'package:e_com_bloc/view/register/sign_up.dart';
 import 'package:e_com_bloc/view/register/verify_code.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -132,7 +134,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => VerifyCode()),
+                    MaterialPageRoute(builder: (context) => SentOtpPhonenumber()),
                   );
                 },
                 child: Align(
@@ -144,20 +146,20 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               ),
               SizedBox(height: 40),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColorsPath.fromARGB2,
-                  foregroundColor: AppColorsPath.white,
-                ),
-                onPressed: _login,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    left: 100,
-                    right: 100,
-                    top: 10,
-                    bottom: 10,
+              Container(
+                margin: EdgeInsets.only(left: 25,right: 15),
+                width: 300,
+                height: 50,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(223, 135, 15, 55),
+                    foregroundColor: Colors.white,
                   ),
-                  child: AppLabel(text: "Login", size: AppSize.s18),
+                  onPressed: _login,
+                  child: const Text(
+                    "Login",
+                    style: TextStyle(fontSize: AppSize.s18),
+                  ),
                 ),
               ),
 
