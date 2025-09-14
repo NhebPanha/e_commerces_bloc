@@ -4,6 +4,7 @@ import 'package:e_com_bloc/utils/app_label.dart';
 import 'package:e_com_bloc/utils/app_size.dart';
 import 'package:e_com_bloc/view/register/complete_profile.dart';
 import 'package:e_com_bloc/view/register/forgot_password.dart';
+import 'package:e_com_bloc/view/register/sent_otp_phonenumber.dart';
 import 'package:e_com_bloc/view/register/sign_up.dart';
 import 'package:e_com_bloc/view/register/verify_code.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -133,7 +134,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ForgotPassword()),
+                    MaterialPageRoute(builder: (context) => SentOtpPhonenumber()),
                   );
                 },
                 child: Align(

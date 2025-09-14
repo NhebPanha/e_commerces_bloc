@@ -3,7 +3,7 @@ import 'package:e_com_bloc/firebase_options.dart';
 import 'package:e_com_bloc/utils/app_colors_path.dart';
 import 'package:e_com_bloc/utils/app_label.dart';
 import 'package:e_com_bloc/utils/app_size.dart';
-import 'package:e_com_bloc/view/register/sent_otp.dart';
+import 'package:e_com_bloc/view/register/sent_otp_phonenumber.dart';
 import 'package:e_com_bloc/view/register/sign_in.dart';
 import 'package:e_com_bloc/view/register/sign_up.dart';
 import 'package:e_com_bloc/view/register/verify_code.dart';
@@ -26,6 +26,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(debugShowCheckedModeBanner: false,
-    home: SignIn());
+    home: SignInScreen());
   }
 }
