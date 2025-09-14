@@ -1,14 +1,13 @@
 import 'package:e_com_bloc/components/button_next_page.dart';
 import 'package:e_com_bloc/utils/app_colors_path.dart';
+import 'package:e_com_bloc/utils/app_label.dart';
 import 'package:e_com_bloc/utils/app_size.dart';
-import 'package:e_com_bloc/utils/text_input_field.dart';
+import 'package:e_com_bloc/utils/config_routs.dart';
 import 'package:e_com_bloc/view/register/sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
-
   @override
   State<SignUp> createState() => _SignUpState();
 }
@@ -37,6 +36,8 @@ class _SignUpState extends State<SignUp> {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text("SignUp successful!")));
+      ConfigRouter.push(context, SignInScreen());
+
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         setState(() => _errorMessage = "This email is already registered.");
@@ -60,33 +61,31 @@ class _SignUpState extends State<SignUp> {
         child: Form(
           key: _formkey,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center, 
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                //color: Colors.amber,
                 child: Center(
                   child: Column(
                     children: [
-                      Text(
-                        "Create Account",
-                        style: TextStyle(
-                          fontSize: AppSize.s25,
-                          color: AppColorsPath.black,
-                          // fontWeight: FontWeight.bold,
-                        ),
+                      AppLabel(
+                        text: "Create Account",
+                        size: AppSize.s25,
+                        color: AppColorsPath.black,
                       ),
-                      Text(
-                        "is the process by which a new",
-                        style: TextStyle(
-                          fontSize: AppSize.s14,
-                          color: AppColorsPath.black,
-                        ),
+                      AppLabel(
+                        text: "is the process by which a new",
+                        size: AppSize.s25,
                       ),
-                      Text(
-                        "user is registered on a platform.",
-                        style: TextStyle(
-                          fontSize: AppSize.s12,
-                          color: AppColorsPath.black,
-                        ),
+                      AppLabel(
+                        text: "is the process by which a new",
+                        size: AppSize.s14,
+                        color: AppColorsPath.black,
+                      ),
+                      AppLabel(
+                        text: "user is registered on a platform.",
+                        size: AppSize.s12,
+                        color: AppColorsPath.black,
                       ),
                     ],
                   ),
@@ -98,66 +97,55 @@ class _SignUpState extends State<SignUp> {
                   children: [
                     Row(
                       children: [
-                        Text("Username", style: TextStyle(fontSize: 20)),
+                        AppLabel(text: "Username", size: AppSize.s18),
                       ],
                     ),
                     const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Container(
-                          width: 350,
-                          height: 50,
-                          child: TextFormField(
-                            controller: _usernameController,
-                            decoration: InputDecoration(
-                              hintText: "Enter Username",
-                              prefixIcon: Icon(
-                                Icons.person_outlined,
-                                color: AppColorsPath.grey,
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                            ),
+                    SizedBox(
+                      height: 50,
+                      child: TextFormField(
+                        controller: _usernameController,
+                        decoration: InputDecoration(
+                          hintText: "Enter Username",
+                          prefixIcon: Icon(
+                            Icons.person_outlined,
+                            color: AppColorsPath.grey,
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
                           ),
                         ),
-                      ],
+                      ),
                     ),
                     SizedBox(height: 10),
                     Row(
-                      children: [Text("Email", style: TextStyle(fontSize: 20))],
+                      children: [AppLabel(text: "Email", size: AppSize.s18)],
                     ),
                     const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Container(
-                          width: 350,
-                          height: 50,
-                          child: TextFormField(
-                            controller: _emailController,
-                            decoration: InputDecoration(
-                              hintText: "Enter Email",
-                              prefixIcon: Icon(
-                                Icons.email_outlined,
-                                color: AppColorsPath.grey,
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                            ),
+                    SizedBox(
+                      height: 50,
+                      child: TextFormField(
+                        controller: _emailController,
+                        decoration: InputDecoration(
+                          hintText: "Enter Email",
+                          prefixIcon: Icon(
+                            Icons.email_outlined,
+                            color: AppColorsPath.grey,
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
                           ),
                         ),
-                      ],
+                      ),
                     ),
                     SizedBox(height: 10),
                     Row(
                       children: [
-                        Text("Password", style: TextStyle(fontSize: 20)),
+                        AppLabel(text: "Password", size: AppSize.s18),
                       ],
                     ),
                     const SizedBox(height: 10),
-                    Container(
-                      width: 350,
+                    SizedBox(
                       height: 50,
                       child: TextFormField(
                         controller: _passwordController,
@@ -190,37 +178,35 @@ class _SignUpState extends State<SignUp> {
                   ],
                 ),
               ),
+              
+              
               SizedBox(height: 30),
               Container(
-                width: 300,
                 height: 50,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(223, 135, 15, 55),
-                    foregroundColor: Colors.white,
+                    backgroundColor:AppColorsPath.fromARGB,
+                    foregroundColor: AppColorsPath.white,
                   ),
                   onPressed: _signUp,
-                  child: const Text(
-                    "Sign Up",
-                    style: TextStyle(fontSize: AppSize.s18),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 100.0,vertical: 5),
+                    child: AppLabel(text:
+                      "Sign Up",
+                     size: AppSize.s18,
+                    ),
                   ),
                 ),
               ),
-              // if (_errorMessage != null) ...[
-              //   const SizedBox(height: 10),
-              //   Text(
-              //     _errorMessage!,
-              //     style: const TextStyle(color: Colors.red),
-              //   ),
               SizedBox(height: 20),
               InkWell(
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SignIn()),
+                    MaterialPageRoute(builder: (context) => SignInScreen()),
                   );
                 },
-                child: Container(child: Login_With(txt: "Login")),
+                child: Login_With(txt: "Login"),
               ),
             ],
             //]

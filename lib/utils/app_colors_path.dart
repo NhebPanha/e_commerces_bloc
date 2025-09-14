@@ -11,5 +11,6 @@ final class AppColorsPath {
   static const yellow = Color(0xFFFFFF00);
   static const orange = Color(0xFFFFA500);
   static const purple = Color(0xFF998400);
-  static const fromARGB = Color.fromRGBO(135, 15, 55, 0.801);
+  static const fromARGB = Color(0xCC870F37);
+  static const fromARGB2 =  Color(0xDF870F37);
 }

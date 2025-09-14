@@ -1,6 +1,5 @@
 import 'package:e_com_bloc/utils/app_colors_path.dart';
 import 'package:e_com_bloc/utils/app_size.dart';
-import 'package:e_com_bloc/view/register/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
