@@ -6,7 +6,6 @@ import 'package:e_com_bloc/utils/config_routs.dart';
 import 'package:e_com_bloc/view/register/sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_utils/src/extensions/export.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});

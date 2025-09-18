@@ -50,19 +50,20 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCv1LVT57k71-JySPSM9gRa1woHGv7eZAc',
-    appId: '1:914928348091:android:b1b4f1a4776ed67fce729e',
-    messagingSenderId: '914928348091',
-    projectId: 'loginlogout-50b1a',
-    storageBucket: 'loginlogout-50b1a.firebasestorage.app',
+    apiKey: 'AIzaSyDwC0BKU24idBxIjhB3AXxPNMmp5Yo41OU',
+    appId: '1:691348472866:android:b43634b891416f9c37767b',
+    messagingSenderId: '691348472866',
+    projectId: 'e-com-app-503af',
+    storageBucket: 'e-com-app-503af.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBpLnjsBXmz7Mmt8_TNsm4zQXC1CrE_HL0',
-    appId: '1:914928348091:ios:94d5148773c50e3bce729e',
-    messagingSenderId: '914928348091',
-    projectId: 'loginlogout-50b1a',
-    storageBucket: 'loginlogout-50b1a.firebasestorage.app',
+    apiKey: 'AIzaSyBB8z9dfbiBYqlHpCb20zLdAE2rwkDOGdI',
+    appId: '1:691348472866:ios:8cf26d7827f040ee37767b',
+    messagingSenderId: '691348472866',
+    projectId: 'e-com-app-503af',
+    storageBucket: 'e-com-app-503af.firebasestorage.app',
+    iosClientId: '691348472866-kdo2tqc5k6k3p2fi5n98v2sjpho4at0r.apps.googleusercontent.com',
     iosBundleId: 'com.example.eComBloc',
   );
 
