@@ -5,7 +5,6 @@ import 'package:e_com_bloc/utils/app_size.dart';
 import 'package:e_com_bloc/utils/text_input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
 class CompleteProfile extends StatefulWidget {
   const CompleteProfile({super.key});
 
