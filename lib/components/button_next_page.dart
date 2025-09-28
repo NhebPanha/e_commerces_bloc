@@ -12,7 +12,7 @@ class Button_Next_Page extends StatelessWidget {
     return Column(
       children: [
         Container(
-          margin: EdgeInsets.only(left: 20, top: 20, right: 20),
+          margin: EdgeInsets.only(left: 12, top: 20, right: 10),
           width: 350,
           height: 50,
           decoration: BoxDecoration(
@@ -39,7 +39,8 @@ class Button_Next_Page extends StatelessWidget {
 
 class Login_With extends StatelessWidget {
   final String txt;
-  const Login_With({super.key,required this.txt});
+  final Color textColor;
+   Login_With({super.key, required this.txt, required this.textColor});
 
   @override
   Widget build(BuildContext context) {
@@ -77,8 +78,8 @@ class Login_With extends StatelessWidget {
                           height: 60,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
-                          color: Colors.white,
-                           // border: Border.all(color: Colors.grey, width: 1),
+                            color: Colors.white,
+                            // border: Border.all(color: Colors.grey, width: 1),
                             image: DecorationImage(
                               image: NetworkImage(
                                 "https://i.pinimg.com/1200x/10/4d/91/104d91f71da1b56e29231059d85a1e93.jpg",
@@ -118,7 +119,7 @@ class Login_With extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
                             //color: Colors.black,
-                           // border: Border.all(color: Colors.grey, width: 1),
+                            // border: Border.all(color: Colors.grey, width: 1),
                             image: DecorationImage(
                               image: NetworkImage(
                                 "https://i.pinimg.com/736x/0d/88/8a/0d888aecd94f752e9749830779ba2580.jpg",

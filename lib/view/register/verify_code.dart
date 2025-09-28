@@ -1,4 +1,8 @@
+import 'package:e_com_bloc/utils/app_colors_path.dart';
+import 'package:e_com_bloc/utils/app_label.dart';
+import 'package:e_com_bloc/utils/app_size.dart';
 import 'package:e_com_bloc/view/register/complete_profile.dart';
+import 'package:e_com_bloc/view/register/new_password.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pinput/pinput.dart';
@@ -22,32 +26,29 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
   final TextEditingController _pinController = TextEditingController();
   String? _statusMessage;
   Future<void> _verifyOTP() async {
-  try {
-    // Create credential from OTP
-    final credential = PhoneAuthProvider.credential(
-      verificationId: widget.verificationId,
-      smsCode: _pinController.text.trim(),
-    );
+    try {
+      // Create credential from OTP
+      final credential = PhoneAuthProvider.credential(
+        verificationId: widget.verificationId,
+        smsCode: _pinController.text.trim(),
+      );
 
-    final userCredential = await _auth.signInWithCredential(credential);
+      final userCredential = await _auth.signInWithCredential(credential);
 
-    setState(() {
-      _statusMessage =
-          "Logged in as ${userCredential.user?.phoneNumber ?? "Unknown"}";
-    });
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => CompleteProfile(), 
-      ),
-    );
-  } catch (e) {
-    setState(() {
-      _statusMessage = "Invalid OTP: $e";
-    });
+      setState(() {
+        _statusMessage =
+            "Logged in as ${userCredential.user?.phoneNumber ?? "Unknown"}";
+      });
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => NewPassword(email: '', verificationId:'')),
+      );
+    } catch (e) {
+      setState(() {
+        _statusMessage = "Invalid OTP: $e";
+      });
+    }
   }
-}
-
 
   @override
   Widget build(BuildContext context) {
@@ -62,20 +63,54 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
     );
 
     return Scaffold(
-      appBar: AppBar(title: Text("Verify OTP")),
+      appBar: AppBar(),
       body: Column(
         children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Column(
+              children: [
+                AppLabel(
+                  text: "Verify Code",
+                  size: AppSize.s25,
+                  color: AppColorsPath.fromARGB,
+                ),
+                AppLabel(
+                  text:
+                      "Please enter your code we just\n sent to your phone number",
+                  size: AppSize.s13,
+                  color: AppColorsPath.black,
+                ),
+              ],
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Enter the code sent to ${widget.phoneNumber}"),
-                const SizedBox(height: 20),
                 Pinput(
                   length: 6,
                   controller: _pinController,
                   defaultPinTheme: defaultPinTheme,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10,top: 20),
+                  child: Column(
+                    children: [
+                      AppLabel(
+                        text: "Didn't recieve OTP?",
+                        size: AppSize.s16,
+                        color: AppColorsPath.grey,
+                      ),
+                      AppLabel(
+                        text:
+                            "Resnt Code",
+                        size: AppSize.s13,
+                        color: AppColorsPath.fromARGB2,
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 20),
                 Container(
@@ -83,7 +118,7 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                   height: 45,
                   child: ElevatedButton(
                     onPressed: _verifyOTP,
-                    child: const Text("Verify",style: TextStyle(fontSize: 18),),
+                    child: const Text("Verify", style: TextStyle(fontSize: 18,color: AppColorsPath.fromARGB)),
                   ),
                 ),
                 if (_statusMessage != null) ...[
@@ -91,7 +126,10 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                   Text(
                     _statusMessage!,
                     style: TextStyle(
-                      color: _statusMessage!.startsWith("") ? Colors.green : Colors.red,
+                      color:
+                          _statusMessage!.startsWith("")
+                              ? Colors.green
+                              : Colors.red,
                     ),
                   ),
                 ],
@@ -103,4 +141,3 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
     );
   }
 }
-

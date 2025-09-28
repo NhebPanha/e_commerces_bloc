@@ -56,160 +56,158 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(top: 70, right: 20, left: 20),
-        child: Form(
-          key: _formkey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center, 
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                child: Center(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 70, right: 20, left: 20),
+          child: Form(
+            key: _formkey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center, 
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  child: Center(
+                    child: Column(
+                      children: [
+                        AppLabel(
+                          text: "Create Account",
+                          size: AppSize.s25,
+                          color: AppColorsPath.black,
+                        ),
+                        AppLabel(
+                          text: "fill your information below or register",
+                          size: AppSize.s15,
+                          color: AppColorsPath.black,
+                        ),
+                        AppLabel(
+                          text: "with your social account",
+                          size: AppSize.s15,
+                          color: AppColorsPath.black,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 10),
                   child: Column(
                     children: [
-                      AppLabel(
-                        text: "Create Account",
-                        size: AppSize.s25,
-                        color: AppColorsPath.black,
+                      Row(
+                        children: [
+                          AppLabel(text: "Username", size: AppSize.s18),
+                        ],
                       ),
-                      AppLabel(
-                        text: "is the process by which a new",
-                        size: AppSize.s25,
+                      const SizedBox(height: 10),
+                      SizedBox(
+                        height: 50,
+                        child: TextFormField(
+                          controller: _usernameController,
+                          decoration: InputDecoration(
+                            hintText: "Enter Username",
+                            prefixIcon: Icon(
+                              Icons.person_outlined,
+                              color: AppColorsPath.grey,
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                        ),
                       ),
-                      AppLabel(
-                        text: "is the process by which a new",
-                        size: AppSize.s14,
-                        color: AppColorsPath.black,
+                      SizedBox(height: 10),
+                      Row(
+                        children: [AppLabel(text: "Email", size: AppSize.s18)],
                       ),
-                      AppLabel(
-                        text: "user is registered on a platform.",
-                        size: AppSize.s12,
-                        color: AppColorsPath.black,
+                      const SizedBox(height: 10),
+                      SizedBox(
+                        height: 50,
+                        child: TextFormField(
+                          controller: _emailController,
+                          decoration: InputDecoration(
+                            hintText: "Enter Email",
+                            prefixIcon: Icon(
+                              Icons.email_outlined,
+                              color: AppColorsPath.grey,
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Row(
+                        children: [
+                          AppLabel(text: "Password", size: AppSize.s18),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      SizedBox(
+                        height: 50,
+                        child: TextFormField(
+                          controller: _passwordController,
+                          obscureText: _obscurePassword, // hide/show
+                          decoration: InputDecoration(
+                            hintText: "Enter Password",
+                            prefixIcon: const Icon(
+                              Icons.lock_outline,
+                              color: Colors.grey,
+                            ),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                _obscurePassword
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                                color: Colors.grey,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _obscurePassword = !_obscurePassword;
+                                });
+                              },
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 10),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        AppLabel(text: "Username", size: AppSize.s18),
-                      ],
+                
+                
+                SizedBox(height: 30),
+                Container(
+                  height: 50,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:AppColorsPath.fromARGB,
+                      foregroundColor: AppColorsPath.white,
                     ),
-                    const SizedBox(height: 10),
-                    SizedBox(
-                      height: 50,
-                      child: TextFormField(
-                        controller: _usernameController,
-                        decoration: InputDecoration(
-                          hintText: "Enter Username",
-                          prefixIcon: Icon(
-                            Icons.person_outlined,
-                            color: AppColorsPath.grey,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
+                    onPressed: _signUp,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 100.0,vertical: 5),
+                      child: AppLabel(text:
+                        "Sign Up",
+                       size: AppSize.s18,
                       ),
-                    ),
-                    SizedBox(height: 10),
-                    Row(
-                      children: [AppLabel(text: "Email", size: AppSize.s18)],
-                    ),
-                    const SizedBox(height: 10),
-                    SizedBox(
-                      height: 50,
-                      child: TextFormField(
-                        controller: _emailController,
-                        decoration: InputDecoration(
-                          hintText: "Enter Email",
-                          prefixIcon: Icon(
-                            Icons.email_outlined,
-                            color: AppColorsPath.grey,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Row(
-                      children: [
-                        AppLabel(text: "Password", size: AppSize.s18),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    SizedBox(
-                      height: 50,
-                      child: TextFormField(
-                        controller: _passwordController,
-                        obscureText: _obscurePassword, // hide/show
-                        decoration: InputDecoration(
-                          hintText: "Enter Password",
-                          prefixIcon: const Icon(
-                            Icons.lock_outline,
-                            color: Colors.grey,
-                          ),
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              _obscurePassword
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,
-                              color: Colors.grey,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                _obscurePassword = !_obscurePassword;
-                              });
-                            },
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              
-              
-              SizedBox(height: 30),
-              Container(
-                height: 50,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor:AppColorsPath.fromARGB,
-                    foregroundColor: AppColorsPath.white,
-                  ),
-                  onPressed: _signUp,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 100.0,vertical: 5),
-                    child: AppLabel(text:
-                      "Sign Up",
-                     size: AppSize.s18,
                     ),
                   ),
                 ),
-              ),
-              SizedBox(height: 20),
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SignInScreen()),
-                  );
-                },
-                child: Login_With(txt: "Login"),
-              ),
-            ],
-            //]
+                SizedBox(height: 20),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignInScreen()),
+                    );
+                  },
+                  child: Login_With(txt: "Login",textColor: AppColorsPath.fromARGB,),
+                ),
+              ],
+              //]
+            ),
           ),
         ),
       ),
