@@ -13,23 +13,20 @@ class ButtomNextPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        InkWell(
-          onTap: onClick,
-          child: Container(
-            margin: EdgeInsets.only(left: 20, top: 20, right: 20),
-            width: 350,
-            height: 50,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Color.fromARGB(223, 135, 15, 55),
-            ),
-            child: Center(
-              child: Text(
-                txt,
-                style: TextStyle(
-                  fontSize: AppSize.s20,
-                  color: AppColorsPath.white,
-                ),
+        Container(
+          margin: EdgeInsets.only(left: 12, top: 20, right: 10),
+          width: 350,
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Color.fromARGB(223, 135, 15, 55),
+          ),
+          child: Center(
+            child: Text(
+              txt,
+              style: TextStyle(
+                fontSize: AppSize.s20,
+                color: AppColorsPath.white,
               ),
             ),
           ),
@@ -43,9 +40,9 @@ class ButtomNextPage extends StatelessWidget {
 }
 
 class LoginWithWidget extends StatelessWidget {
-  final String txt;
-  final VoidCallback? onClick;
-  const LoginWithWidget({super.key, required this.txt, this.onClick});
+  late final String txt;
+  late final Color textColor;
+   LoginWithWidget({super.key, required this.txt, required this.textColor});
 
   @override
   Widget build(BuildContext context) {
@@ -141,27 +138,27 @@ class LoginWithWidget extends StatelessWidget {
               ),
             ],
           ),
-          Container(
-            margin: EdgeInsets.only(top: 20, left: 45),
-            child: Row(
-              children: [
-                Text(
-                  "Don't have an accoutnt?",
-                  style: TextStyle(fontSize: AppSize.s16),
-                ),
-                SizedBox(width: 8),
-                GestureDetector(
-                  onDoubleTap: onClick,
-                  child: AppLabel(
-                    text: txt,
-                    size: AppSize.s16,
-                    color: AppColorsPath.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          // Container(
+          //   margin: EdgeInsets.only(top: 20, left: 45),
+          //   child: Row(
+          //     children: [
+          //       Text(
+          //         "Don't have an accoutnt?",
+          //         style: TextStyle(fontSize: AppSize.s16),
+          //       ),
+          //       SizedBox(width: 8),
+          //       GestureDetector(
+          //         onDoubleTap: onClick,
+          //         child: AppLabel(
+          //           text: txt,
+          //           size: AppSize.s16,
+          //           color: AppColorsPath.black,
+          //           fontWeight: FontWeight.bold,
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );

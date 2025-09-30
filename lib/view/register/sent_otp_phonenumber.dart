@@ -11,15 +11,28 @@ class SentOtpPhonenumber extends StatefulWidget {
 
 class _SentOtpPhonenumberState extends State<SentOtpPhonenumber> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
   final TextEditingController _phoneController = TextEditingController();
-  String _selectedCode = "+855";
+
+  String _selectedCode = "+855"; // default country code
   String? _statusMessage;
 
+  /// Send OTP dynamically
   Future<void> _sendOTP() async {
+    final phone = _phoneController.text.trim();
+
+    // Validate user input
+    if (phone.isEmpty) {
+      setState(() {
+        _statusMessage = "Please enter your phone number!";
+      });
+      return;
+    }
+
+    final fullPhoneNumber = "$_selectedCode$phone";
+
     try {
       await _auth.verifyPhoneNumber(
-        phoneNumber: "$_selectedCode${_phoneController.text.trim()}",
+        phoneNumber: fullPhoneNumber,
         timeout: const Duration(seconds: 60),
         verificationCompleted: (PhoneAuthCredential credential) async {
           await _auth.signInWithCredential(credential);
@@ -41,14 +54,12 @@ class _SentOtpPhonenumberState extends State<SentOtpPhonenumber> {
             MaterialPageRoute(
               builder: (context) => VerifyCodePage(
                 verificationId: verificationId,
-                phoneNumber: "$_selectedCode${_phoneController.text.trim()}",
+                phoneNumber: fullPhoneNumber,
               ),
             ),
           );
         },
-        codeAutoRetrievalTimeout: (String verificationId) {
-          // optional
-        },
+        codeAutoRetrievalTimeout: (String verificationId) {},
       );
     } catch (e) {
       setState(() {
@@ -70,19 +81,15 @@ class _SentOtpPhonenumberState extends State<SentOtpPhonenumber> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Container(
+            Container(
               width: 300,
               height: 300,
-              child: Image(
-                image: NetworkImage(
-                  "https://i.pinimg.com/1200x/5a/5e/36/5a5e369e01252707f7ecc68e201e76d9.jpg",
-                ),
+              child: Image.network(
+                "https://i.pinimg.com/1200x/5a/5e/36/5a5e369e01252707f7ecc68e201e76d9.jpg",
                 fit: BoxFit.cover,
               ),
             ),
-          ),
+            const SizedBox(height: 16),
             TextFormField(
               controller: _phoneController,
               keyboardType: TextInputType.phone,
@@ -97,9 +104,18 @@ class _SentOtpPhonenumberState extends State<SentOtpPhonenumber> {
                     child: DropdownButton<String>(
                       value: _selectedCode,
                       items: const [
-                        DropdownMenuItem(value: "+855", child: Text("🇰🇭 +855")),
-                        DropdownMenuItem(value: "+1", child: Text("🇺🇸 +1")),
-                        DropdownMenuItem(value: "+1", child: Text("🇨🇦 +1")),
+                        DropdownMenuItem(
+                          value: "+855",
+                          child: Text("🇰🇭 +855"),
+                        ),
+                        DropdownMenuItem(
+                          value: "+1",
+                          child: Text("🇺🇸 +1"),
+                        ),
+                        DropdownMenuItem(
+                          value: "+1",
+                          child: Text("🇨🇦 +1"),
+                        ),
                       ],
                       onChanged: (value) {
                         setState(() {
@@ -112,11 +128,14 @@ class _SentOtpPhonenumberState extends State<SentOtpPhonenumber> {
               ),
             ),
             const SizedBox(height: 20),
-            Container(
+            SizedBox(
               width: 180,
               child: ElevatedButton(
                 onPressed: _sendOTP,
-                child: const Text("Send OTP", style: TextStyle(fontSize: 18)),
+                child: const Text(
+                  "Send OTP",
+                  style: TextStyle(fontSize: 18),
+                ),
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 50),
                 ),
@@ -127,7 +146,9 @@ class _SentOtpPhonenumberState extends State<SentOtpPhonenumber> {
               Text(
                 _statusMessage!,
                 style: TextStyle(
-                  color: _statusMessage!.startsWith("") ? Colors.green : Colors.red,
+                  color: _statusMessage!.startsWith("OTP sent")
+                      ? Colors.green
+                      : Colors.red,
                 ),
               ),
             ],
