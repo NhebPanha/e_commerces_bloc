@@ -1,12 +1,5 @@
 import 'package:e_com_bloc/firebase_options.dart';
-import 'package:e_com_bloc/utils/app_colors_path.dart';
-import 'package:e_com_bloc/utils/app_label.dart';
-import 'package:e_com_bloc/utils/app_size.dart';
-import 'package:e_com_bloc/view/register/complete_profile.dart';
-import 'package:e_com_bloc/view/register/new_password.dart';
-import 'package:e_com_bloc/view/register/otp/sent_otp.dart';
-import 'package:e_com_bloc/view/register/sent_otp_phonenumber.dart';
-import 'package:e_com_bloc/view/register/sign_in.dart';
+import 'package:e_com_bloc/view/skip_screen/get_start_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 Future<void> main() async {
@@ -19,7 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(debugShowCheckedModeBanner: false,
-    home: SignInScreen());
+    // home: SignInScreen()
+    home: GetStartScreen(),
+    );
     
   }
 }

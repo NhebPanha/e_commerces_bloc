@@ -1,6 +1,8 @@
 
 import 'dart:developer';
 import 'package:e_com_bloc/data/skip_model/skip_model.dart';
+import 'package:e_com_bloc/utils/config_routs.dart';
+import 'package:e_com_bloc/view/register/sign_in.dart';
 import 'package:e_com_bloc/view/skip_screen/widget/cart_skip_screen.dart';
 import 'package:flutter/material.dart';
 class SkipScreen extends StatefulWidget {
@@ -57,6 +59,7 @@ class _SkipScreenState extends State<SkipScreen> {
                   }, 
                   title1: data.title1, title2: data.title2, 
                   onClick: (){
+                    ConfigRouter.push(context, SignInScreen());
                     log("Skip Page to login page");
                   },
                 );

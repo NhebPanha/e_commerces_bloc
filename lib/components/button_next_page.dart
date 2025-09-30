@@ -7,7 +7,7 @@ import 'package:flutter/widgets.dart';
 class ButtomNextPage extends StatelessWidget {
   final String txt;
   final Function()? onClick;
-  const ButtomNextPage({super.key, required this.txt, this.onClick});
+  ButtomNextPage({super.key, required this.txt, this.onClick});
 
   @override
   Widget build(BuildContext context) {
@@ -138,27 +138,27 @@ class LoginWithWidget extends StatelessWidget {
               ),
             ],
           ),
-          // Container(
-          //   margin: EdgeInsets.only(top: 20, left: 45),
-          //   child: Row(
-          //     children: [
-          //       Text(
-          //         "Don't have an accoutnt?",
-          //         style: TextStyle(fontSize: AppSize.s16),
-          //       ),
-          //       SizedBox(width: 8),
-          //       GestureDetector(
-          //         onDoubleTap: onClick,
-          //         child: AppLabel(
-          //           text: txt,
-          //           size: AppSize.s16,
-          //           color: AppColorsPath.black,
-          //           fontWeight: FontWeight.bold,
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
+          Container(
+            margin: EdgeInsets.only(top: 20, left: 45),
+            child: Row(
+              children: [
+                Text(
+                  "Don't have an accoutnt?",
+                  style: TextStyle(fontSize: AppSize.s16),
+                ),
+                SizedBox(width: 8),
+                GestureDetector(
+                  // onDoubleTap: ,
+                  child: AppLabel(
+                    text: txt,
+                    size: AppSize.s16,
+                    color: AppColorsPath.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
