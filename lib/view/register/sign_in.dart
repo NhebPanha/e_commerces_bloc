@@ -172,15 +172,15 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
 
               const SizedBox(height: 50),
-              // GestureDetector(
-              //   onTap: () {
-              //     Navigator.push(
-              //       context,
-              //       MaterialPageRoute(builder: (context) => SignUp()),
-              //     );
-              //   },
-              //   child: Login_With(txt: "Sign Up"),
-              // ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignUp()),
+                  );
+                },
+                // child: Login_With(txt: "Sign Up"),
+              ),
             ],
           ),
         ),

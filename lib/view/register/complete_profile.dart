@@ -41,9 +41,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                 color: AppColorsPath.fromARGB,
               ),
             ),
-        
             const SizedBox(height: 20),
-        
             // Profile Avatar
             Center(
               child: Stack(

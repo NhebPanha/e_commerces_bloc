@@ -44,7 +44,6 @@ class _GetStartScreenState extends State<GetStartScreen> {
           SizedBox(height: 20),
           ButtomGetStartWidget(
             onClick: (){
-              log("next page");
               ConfigRouter.push(context, SkipScreen());
             },
             title: "Les't Get Started",

@@ -32,6 +32,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/image/
+    - assets/image/image_png/
   fonts:
     - family: funnel
       fonts:

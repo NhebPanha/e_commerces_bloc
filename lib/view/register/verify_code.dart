@@ -5,11 +5,9 @@ import 'package:e_com_bloc/view/register/new_password.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pinput/pinput.dart';
-
 class VerifyCodePage extends StatefulWidget {
   final String verificationId;
   final String phoneNumber;
-
   const VerifyCodePage({
     super.key,
     required this.verificationId,
