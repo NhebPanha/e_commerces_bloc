@@ -2,8 +2,8 @@
 import 'package:e_com_bloc/utils/app_colors_path.dart';
 import 'package:flutter/material.dart';
 
-class verify_code extends StatelessWidget {
-  const verify_code({super.key});
+class verifycode extends StatelessWidget {
+  const verifycode({super.key});
 
   @override
   Widget build(BuildContext context) {
