@@ -32,6 +32,9 @@ flutter:
   assets:
     - assets/icons/
     - assets/image/
+    - assets/image/image_png/boy_gacket.jpg
+    - assets/image/image_png/boy_gacket1.jpg
+    - assets/image/image_png/girl_gacket.jpg
     - assets/image/image_png/
   fonts:
     - family: funnel

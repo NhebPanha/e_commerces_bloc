@@ -1,5 +1,5 @@
 import 'package:e_com_bloc/utils/app_colors_path.dart';
-import 'package:e_com_bloc/view/checkout_screen/order_list_data.dart';
+import 'package:e_com_bloc/view/checkout_screen/checkout/order_list_data.dart';
 import 'package:flutter/material.dart';
 
 class OrderList extends StatelessWidget {
@@ -11,9 +11,9 @@ class OrderList extends StatelessWidget {
       itemCount: orDerListData.length,
       itemBuilder: (context, index) {
         return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0),
+          padding: const EdgeInsets.symmetric(vertical: 5.0),
           child: Container(
-            height: 120,
+            height: 100,
             width: double.infinity,
             decoration: BoxDecoration(
               border: Border.all(color: AppColorsPath.white),
@@ -38,7 +38,7 @@ class OrderList extends StatelessWidget {
                       borderRadius: BorderRadius.circular(5),
                     ),
                     clipBehavior: Clip.hardEdge,
-                    child: Image.network(
+                    child: Image.asset(
                       "${orDerListData[index]['image']}",
                       fit: BoxFit.cover,
                     ),

@@ -18,8 +18,8 @@ class BottomButton extends StatelessWidget {
     return TextButton(
       style: TextButton.styleFrom(
         foregroundColor: AppColorsPath.white, // text color
-        backgroundColor: AppColorsPath.darkred, // button background
-        padding: const EdgeInsets.symmetric(horizontal: 150, vertical: 5),
+        backgroundColor: AppColorsPath.dard, // button background
+        padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 5),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50), // rounded corners
         ),

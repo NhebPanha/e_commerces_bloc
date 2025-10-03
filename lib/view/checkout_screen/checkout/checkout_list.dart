@@ -5,14 +5,17 @@ import 'package:flutter/material.dart';
 
 class CheckoutList extends StatelessWidget {
   final Icon icons;
+  final String title;
   final String text;
   final String subtitle;
-  final VoidCallback  change;
+  final VoidCallback change;
   const CheckoutList({
     super.key,
     required this.icons,
     required this.text,
-    required this.subtitle, required this.change,
+    required this.subtitle,
+    required this.change,
+    required this.title,
   });
 
   @override
@@ -23,11 +26,7 @@ class CheckoutList extends StatelessWidget {
         children: [
           Row(
             children: [
-              AppLabel(
-                text: "Shopping Address",
-                size: 20,
-                fontWeight: FontWeight.bold,
-              ),
+              AppLabel(text: title, size: 18, fontWeight: FontWeight.bold),
             ],
           ),
           Padding(
@@ -38,7 +37,7 @@ class CheckoutList extends StatelessWidget {
                 Text(
                   text,
                   style: TextStyle(
-                    fontSize: AppSize.s20,
+                    fontSize: AppSize.s16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -46,35 +45,34 @@ class CheckoutList extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 25, right: 20),
+            padding: const EdgeInsets.only(left: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AppLabel(text: subtitle, size: 15, maxLines: 2),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        AppColorsPath.white, // Background color of the button
-                    foregroundColor:
-                        AppColorsPath.fromARGB, // Text and icon color
-                    // elevation: 8.0, // Shadow elevation
-                    // shape: RoundedRectangleBorder(
-                    //   borderRadius: BorderRadius.circular(
-                    //     5.0,
-                    //   ), // Rounded corners
-                    // ),
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 15,
-                    ), // Padding
-                    textStyle: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ), // Text style
+                Container(
+                  width: 250,
+                  child: AppLabel(text: subtitle, size: 15, maxLines: 2),
+                ),
+                InkWell(
+                  focusColor: AppColorsPath.dard,
+                  borderRadius: BorderRadius.circular(10),
+                  highlightColor: AppColorsPath.grey,
+                  onTap: change,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Text(
+                        "Change",
+                        style: TextStyle(
+                          color: AppColorsPath.fromARGB,
+                        ),
+                      ),
+                    ),
                   ),
-                  onPressed: change,
-                  child: Text("change"),
                 ),
               ],
             ),
