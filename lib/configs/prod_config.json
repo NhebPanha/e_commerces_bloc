@@ -1,0 +1,12 @@
+{
+    "host": "https:",
+    "base_url": "https:",
+    "root_api": "https:",
+    "telegram_api": "https://",
+    "host_socket": "",
+    "port_socket": "",
+    "pusher_key": "",
+    "env_key": "",
+    "android_google_key": "AIzaSyAiorgOrHLUMzx6Z5TFjsGZ6ihMgRIyEbc",
+    "iOS_google_key": "AIzaSyAkZvVtv1uuSJw7XNZyBrzl6X9rmHVxbqk"
+}

@@ -1,6 +1,6 @@
-import 'package:e_com_bloc/utils/app_colors_path.dart';
-import 'package:e_com_bloc/utils/app_label.dart';
-import 'package:e_com_bloc/utils/app_size.dart';
+import 'package:e_com_bloc/components/app_colors_path.dart';
+import 'package:e_com_bloc/components/app_label.dart';
+import 'package:e_com_bloc/components/app_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 

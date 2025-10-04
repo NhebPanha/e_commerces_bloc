@@ -1,8 +1,8 @@
-import 'package:e_com_bloc/utils/app_bar_screen.dart';
-import 'package:e_com_bloc/utils/app_colors_path.dart';
-import 'package:e_com_bloc/utils/app_label.dart';
-import 'package:e_com_bloc/utils/app_size.dart';
-import 'package:e_com_bloc/utils/bottom_button.dart';
+import 'package:e_com_bloc/components/app_bar_screen.dart';
+import 'package:e_com_bloc/components/app_colors_path.dart';
+import 'package:e_com_bloc/components/app_label.dart';
+import 'package:e_com_bloc/components/app_size.dart';
+import 'package:e_com_bloc/components/bottom_button.dart';
 import 'package:e_com_bloc/view/checkout_screen/shipping/shipping_address_data.dart';
 import 'package:flutter/material.dart';
 

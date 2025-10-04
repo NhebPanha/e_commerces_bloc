@@ -1,8 +1,8 @@
 import 'package:e_com_bloc/components/button_next_page.dart';
-import 'package:e_com_bloc/utils/app_colors_path.dart';
-import 'package:e_com_bloc/utils/app_label.dart';
-import 'package:e_com_bloc/utils/app_size.dart';
-import 'package:e_com_bloc/utils/config_routs.dart';
+import 'package:e_com_bloc/components/app_colors_path.dart';
+import 'package:e_com_bloc/components/app_label.dart';
+import 'package:e_com_bloc/components/app_size.dart';
+import 'package:e_com_bloc/components/config_file_path/config_routs.dart';
 import 'package:e_com_bloc/view/register/sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

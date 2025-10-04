@@ -1,5 +1,5 @@
 
-import 'package:e_com_bloc/utils/app_colors_path.dart';
+import 'package:e_com_bloc/components/app_colors_path.dart';
 import 'package:flutter/material.dart';
 
 class verifycode extends StatelessWidget {

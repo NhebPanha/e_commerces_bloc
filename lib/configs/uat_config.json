@@ -1,0 +1,12 @@
+{
+    "host": "https://api.escuelajs.co/api/v1",
+    "base_url": "https://api.escuelajs.co/api/v1",
+    "root_api": "https://api.escuelajs.co/api/v1",
+    "telegram_api": "https://api.escuelajs.co/api/v1",
+    "host_socket": "",
+    "port_socket": "",
+    "pusher_key": "",
+    "env_key": "uat",
+    "android_google_map_key": "AIzaSyARQCZKWTycC6S1rJXGbCVf3J4Y2DdDyow",
+    "iOS_google_map_key": "AIzaSyA3hZvZulEV3IsIUDegQr3hv-dXyp55dlY"
+}

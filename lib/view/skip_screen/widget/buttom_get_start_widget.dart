@@ -1,4 +1,4 @@
-import 'package:e_com_bloc/utils/app_label.dart';
+import 'package:e_com_bloc/components/app_label.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 class ButtomGetStartWidget extends StatelessWidget{

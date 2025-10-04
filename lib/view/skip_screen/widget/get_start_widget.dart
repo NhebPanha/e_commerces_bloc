@@ -1,6 +1,6 @@
-import 'package:e_com_bloc/utils/app_colors_path.dart';
-import 'package:e_com_bloc/utils/app_image_png_path.dart';
-import 'package:e_com_bloc/utils/app_size.dart';
+import 'package:e_com_bloc/components/app_colors_path.dart';
+import 'package:e_com_bloc/components/app_image_png_path.dart';
+import 'package:e_com_bloc/components/app_size.dart';
 import 'package:e_com_bloc/view/skip_screen/widget/custom_widget_get_start.dart';
 import 'package:flutter/widgets.dart';
 
@@ -32,6 +32,7 @@ class GetStartWidget extends StatelessWidget {
             children: [
               CustomWidgetGetStart(
                 image: AppImagePngPath.kimli,
+                // height: double.infinity, width: double.infinity,
                 height: 300,
                 width: 170,
                 border: Border.all(
