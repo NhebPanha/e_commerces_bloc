@@ -14,33 +14,34 @@ class ShippingAddress extends StatefulWidget {
 }
 
 class _ShippingAddressState extends State<ShippingAddress> {
-  bool _isCheck = false;
+  List<Map<String, dynamic>> option = shippingAddress;
+
+  /// Keep track of the selected radio button
+  int? _selectedIndex;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColorsPath.white,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60),
+        preferredSize: const Size.fromHeight(60),
         child: AppBarScreen(
-          icons: Icon(Icons.arrow_back),
-          text: "Shipping Adddress",
+          icons: const Icon(Icons.arrow_back),
+          text: "Shipping Address",
         ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: ListView.builder(
-          itemCount: shippingAddress.length,
+          itemCount: option.length,
           itemBuilder: (context, index) {
             return Column(
               children: [
                 Row(
                   children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.location_on_outlined),
-                    ),
+                    const Icon(Icons.location_on_outlined),
                     Text(
-                      "${shippingAddress[index]['title']}",
+                      option[index]['title'],
                       style: TextStyle(
                         fontSize: AppSize.s16,
                         fontWeight: FontWeight.bold,
@@ -54,36 +55,27 @@ class _ShippingAddressState extends State<ShippingAddress> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Container(
+                      SizedBox(
                         width: 250,
-                        child: Text(
-                          "${shippingAddress[index]['address']}",
-                          maxLines: 2,
-                        ),
+                        child: Text(option[index]['address'], maxLines: 2),
                       ),
-                      Transform.scale(
-                        scale: 1.2, // 1.0 = default size, 2.0 = double size
-                        child: Checkbox(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          value: _isCheck,
-                          onChanged: (newvalue) {
-                            setState(() {
-                              _isCheck = newvalue!;
-                            });
-                          },
-                        ),
+                      Radio<int>(
+                        value: index, // each radio button’s value is its index
+                        groupValue: _selectedIndex, // selected index
+                        onChanged: (newIndex) {
+                          setState(() {
+                            _selectedIndex = newIndex; // update selected
+                          });
+                        },
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 const Divider(
-                  color: Color.fromARGB(255,224,220,220,
-                  ), // Customize the color of the divider
-                  height: 2, // Total height of the divider, including padding
-                  thickness: 1, // Actual thickness of the line
+                  color: Color.fromARGB(255, 224, 220, 220),
+                  height: 2,
+                  thickness: 1,
                 ),
               ],
             );
@@ -91,20 +83,39 @@ class _ShippingAddressState extends State<ShippingAddress> {
         ),
       ),
       bottomSheet: Padding(
-        padding: const EdgeInsets.only(bottom: 30,top: 10,left: 20,right: 20,),
+        padding: const EdgeInsets.only(
+          bottom: 30,
+          top: 10,
+          left: 20,
+          right: 20,
+        ),
         child: Container(
           height: 60,
           width: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10),
               topRight: Radius.circular(10),
             ),
           ),
           child: BottomButton(
-            onTap: () {},
+            onTap: () {
+              if (_selectedIndex != null) {
+                print("Selected address: ${option[_selectedIndex!]}");
+              } else {
+                print("No address selected");
+                // ScaffoldMessenger.of(context).showSnackBar(
+                //   SnackBar(
+                //     content: Text("No Address selected"),
+                //     backgroundColor: AppColorsPath.red,
+                //     behavior: SnackBarBehavior.floating,
+                //     duration: Duration(seconds: 1),
+                //     margin: EdgeInsets.only(top: 20),
+                //   ),
+                // );
+              }
+            },
             text: "Apply",
-            // height: 5, width: 150
           ),
         ),
       ),
