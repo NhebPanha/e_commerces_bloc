@@ -1,8 +1,8 @@
 import 'package:e_com_bloc/components/button_next_page.dart';
-import 'package:e_com_bloc/utils/app_colors_path.dart';
-import 'package:e_com_bloc/utils/app_label.dart';
-import 'package:e_com_bloc/utils/app_size.dart';
-import 'package:e_com_bloc/utils/text_input_field.dart';
+import 'package:e_com_bloc/components/app_colors_path.dart';
+import 'package:e_com_bloc/components/app_label.dart';
+import 'package:e_com_bloc/components/app_size.dart';
+import 'package:e_com_bloc/components/text_input_field.dart';
 import 'package:flutter/material.dart';
 class CompleteProfile extends StatefulWidget {
   const CompleteProfile({super.key});

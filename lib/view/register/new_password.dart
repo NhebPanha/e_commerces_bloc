@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:e_com_bloc/utils/app_colors_path.dart';
-import 'package:e_com_bloc/utils/app_size.dart';
-import 'package:e_com_bloc/utils/text_input_field.dart';
+import 'package:e_com_bloc/components/app_colors_path.dart';
+import 'package:e_com_bloc/components/app_size.dart';
+import 'package:e_com_bloc/components/text_input_field.dart';
 import 'package:e_com_bloc/view/register/complete_profile.dart';
 
 

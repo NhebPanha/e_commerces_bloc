@@ -1,7 +1,7 @@
-import 'package:e_com_bloc/data/skip_model/skip_model.dart';
-import 'package:e_com_bloc/utils/app_colors_path.dart';
-import 'package:e_com_bloc/utils/app_label.dart';
-import 'package:e_com_bloc/utils/app_size.dart';
+import 'package:e_com_bloc/data/models/skip_model/skip_model.dart';
+import 'package:e_com_bloc/components/app_colors_path.dart';
+import 'package:e_com_bloc/components/app_label.dart';
+import 'package:e_com_bloc/components/app_size.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -63,7 +63,8 @@ class CartSkipScreen extends StatelessWidget {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(12.0),
-            child: Image.asset(image, fit: BoxFit.contain),
+            child: Image.network(image, fit: BoxFit.cover),
+            // child: Image.asset(image, fit: BoxFit.contain),
           ),
         ),
         // Bottom content

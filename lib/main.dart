@@ -1,4 +1,7 @@
 import 'package:e_com_bloc/firebase_options.dart';
+import 'package:e_com_bloc/view/checkout_screen/checkout/checkout.dart';
+import 'package:e_com_bloc/view/checkout_screen/shipping/shipping_address.dart';
+import 'package:e_com_bloc/view/home/home_screen.dart';
 import 'package:e_com_bloc/view/skip_screen/get_start_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +16,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(debugShowCheckedModeBanner: false,
     // home: SignInScreen()
-    home: GetStartScreen(),
+    // home: GetStartScreen(),
+    // home: CheckoutScreen(),
+    home: ShippingAddress(),
+    // home: HomeScreen(),
     );
     
   }
@@ -23,13 +29,11 @@ class MyApp extends StatelessWidget {
 // import 'package:e_com_bloc/view/OTP/phone_auth_screen.dart';
 // import 'package:flutter/material.dart';
 // import 'package:firebase_core/firebase_core.dart';
-
 // void main() async {
 //   WidgetsFlutterBinding.ensureInitialized();
 //   await Firebase.initializeApp(); // ensure google-service files placed
 //   runApp(MyApp());
 // }
-
 // class MyApp extends StatelessWidget {
 //   @override
 //   Widget build(BuildContext context) {
@@ -44,9 +48,7 @@ class MyApp extends StatelessWidget {
 //     );
 //   }
 // }
-
 // class HomeScreen extends StatelessWidget {
-  
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
