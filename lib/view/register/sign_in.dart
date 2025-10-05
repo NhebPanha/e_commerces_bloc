@@ -8,24 +8,16 @@ import 'package:e_com_bloc/view/register/sent_otp_phonenumber.dart';
 import 'package:e_com_bloc/view/register/sign_up.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
-
   @override
   State<SignInScreen> createState() => _SignInScreenState();
 }
-
 class _SignInScreenState extends State<SignInScreen> {
   bool _obscurePassword = true;
-<<<<<<< HEAD
-  final _auth = FirebaseAuth.instance;
-  final _formKey = GlobalKey<FormFieldState>();
-=======
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
 
->>>>>>> origin/kimly
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   String? _errorMessage;
@@ -39,11 +31,9 @@ class _SignInScreenState extends State<SignInScreen> {
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
-
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Login successful!")),
       );
-
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const CompleteProfile()),
@@ -135,32 +125,8 @@ class _SignInScreenState extends State<SignInScreen> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-<<<<<<< HEAD
-              
-              SizedBox(height: 40),
-              Container(
-                margin: EdgeInsets.only(left: 25,right: 15),
-                width: 300,
-                height: 50,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(223, 135, 15, 55),
-                    foregroundColor: Colors.white,
-                  ),
-                  onPressed: _login,
-                  child: const Text(
-                    "Login",
-                    style: TextStyle(fontSize: AppSize.s18),
-                  ),
-                ),
               ),
-
-              const SizedBox(height: 50),
-=======
-              ),
-
               const SizedBox(height: 10),
-
               // Forgot password
               Align(
                 alignment: Alignment.centerRight,
@@ -213,30 +179,19 @@ class _SignInScreenState extends State<SignInScreen> {
               const SizedBox(height: 30),
 
               // Sign up link
->>>>>>> origin/kimly
               GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
-<<<<<<< HEAD
                     MaterialPageRoute(builder: (context) => SignUp()),
                   );
                 },
                 // child: Login_With(txt: "Sign Up"),
-=======
-                    MaterialPageRoute(builder: (context) => const SignUp()),
-                  );
-                },
-                child:  Login_With(
-                  txt: "Sign Up",
-                  textColor: Colors.pink,
-                ),
->>>>>>> origin/kimly
               ),
             ],
           ),
         ),
-      ),),
+      ),
     );
   }
 }
