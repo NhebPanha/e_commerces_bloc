@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
     // home: SignInScreen()
     // home: GetStartScreen(),
     // home: CheckoutScreen(),
-    home: ShippingAddress(),
-    // home: HomeScreen(),
+    // home: ShippingAddress(),
+    home: HomeScreen(),
     );
     
   }

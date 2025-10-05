@@ -1,8 +1,8 @@
 {
-    "host": "https://api.escuelajs.co/api/v1",
-    "base_url": "https://api.escuelajs.co/api/v1",
-    "root_api": "https://api.escuelajs.co/api/v1",
-    "telegram_api": "https://api.escuelajs.co/api/v1",
+    "host": "https://api.escuelajs.co/api/v1/",
+    "base_url": "https://api.escuelajs.co/api/v1/",
+    "root_api": "https://api.escuelajs.co/api/v1/",
+    "telegram_api": "https://api.escuelajs.co/api/v1/",
     "host_socket": "",
     "port_socket": "",
     "pusher_key": "",
