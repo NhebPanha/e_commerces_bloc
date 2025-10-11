@@ -18,13 +18,12 @@ class MyApp extends StatelessWidget {
     // home: SignInScreen()
     // home: GetStartScreen(),
     // home: CheckoutScreen(),
-    // home: ShippingAddress(),
-    home: HomeScreen(),
+    home: ShippingAddress(),
+    // home: HomeScreen(),
     );
     
   }
 }
-
 // import 'package:e_com_bloc/view/OTP/email_auth_screen.dart';
 // import 'package:e_com_bloc/view/OTP/phone_auth_screen.dart';
 // import 'package:flutter/material.dart';

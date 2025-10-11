@@ -1,5 +1,4 @@
 import 'package:e_com_bloc/components/app_colors_path.dart';
-import 'package:e_com_bloc/components/app_icon_path.dart';
 import 'package:flutter/material.dart';
 
 class BottomButton extends StatelessWidget {

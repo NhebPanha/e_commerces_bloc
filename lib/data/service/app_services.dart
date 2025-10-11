@@ -2,11 +2,12 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:e_com_bloc/data/models/error_model.dart';
+import 'package:e_com_bloc/utils/constants.dart';
 import '../../../configs/config_reader.dart';
-import '../../../data/models/network_error_model/network_error_model.dart';
-import '../../../utils/check_internet/check_internet_serivce.dart';
-import '../../utils/constant.dart';
+import 'check_internet_service.dart';
 import 'helper_service.dart';
+
 class AppService {
   HttpMethods httpMethods;
   String endPoint;
@@ -15,11 +16,15 @@ class AppService {
   FormData? formData;
   Dio dio = Dio();
   String baseUrl = ConfigReader.rootApi();
+
   AppService({required this.httpMethods, required this.endPoint, this.data, this.queryParameters, this.formData});
-  Future<Either<NetworkErrorModel, HttpResponse>> send() async {
-    Options options = Options(headers: {"Content-Type": "application/json", "Accept": "application/json", "Charset": "utf-8", 'Authorization': await getToken()});
+  Future<Either<ErrorModel, HttpResponse>> send() async {
+    Options options = Options(headers: {'Accept': 'application/json', 'Authorization': await getToken()});
     Response response;
     String url = baseUrl + endPoint;
+    log("url-api: $url");
+    log("print------Param-----QueryParameters: ${jsonEncode(queryParameters)}");
+    log("print------Param-----Data: $data");
     String methodName = "";
     try {
       switch (httpMethods) {
@@ -46,20 +51,21 @@ class AppService {
           break;
       }
       if (response.statusCode == 200) {
-        log("response Method: [$methodName]: Success");
-        // log("response Method: [$methodName]: $response");
+        // log("response Method: [$methodName]: Success");
+        log("response Method: [$methodName]: $response");
         return Right(HttpResponse(response: response, status: true));
       }
     } catch (e) {
       log("response Method: [$methodName] Catch: $e");
       bool isHasInternet = await CheckInternetService.checkDataConnection();
       if (isHasInternet) {
-        return Left(NetworkErrorModel(title: Constant.unknownError, description: e.toString(), statusCode: Constant.unknownStatus));
+        return Left(ErrorModel(title: Constants.unKnownError, description: e.toString(), statusCode: Constants.codeUnknown));
       } else {
-        return Left(NetworkErrorModel(title: Constant.noInternetConnection, description: Constant.pleaseCheckYourInternetConnection, statusCode: Constant.noInternetStatus));
+        return Left(ErrorModel(title: Constants.noInternet, description: Constants.pleaseCheckInternet, statusCode: Constants.codeNetwork));
       }
     }
+
     log("response: Method: [$methodName] Error");
-    return Left(NetworkErrorModel(title: "Error", description: "Something Went Wrong", statusCode: 500));
+    return Left(ErrorModel(title: "Error", description: "Something Went Wrong", statusCode: 500));
   }
 }

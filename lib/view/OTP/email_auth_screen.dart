@@ -1,6 +1,6 @@
 // email_link_auth.dart
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 class EmailLinkAuthScreen extends StatefulWidget {
   @override
   _EmailLinkAuthScreenState createState() => _EmailLinkAuthScreenState();
