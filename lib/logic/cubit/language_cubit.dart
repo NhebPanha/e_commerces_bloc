@@ -13,7 +13,6 @@ class LanguageCubit extends Cubit<LanguageState> {
     try {
       var language = AppSharedPreference.getAppLanguage();
       log("==== App Current Lang: $language");
-
       if (language == "en") {
         emit(LanguageLoaded(Locale('en', 'US'), "EN", "en"));
       } else if (language == "kh") {
@@ -25,7 +24,6 @@ class LanguageCubit extends Cubit<LanguageState> {
       emit(LanguageLoaded(Locale('kh', 'KH'), "KH", "kh"));
     }
   }
-
   void changeLanguage(Locale locale, String type, String lanCode) {
     /// Save to SharedPreferences
     AppSharedPreference.setAppLanguage(lanCode);
