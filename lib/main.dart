@@ -17,14 +17,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(debugShowCheckedModeBanner: false,
     // home: SignInScreen()
     // home: GetStartScreen(),
-    // home: CheckoutScreen(),
+    home: CheckoutScreen(),
     // home: ShippingAddress(),
-    home: HomeScreen(),
+    // home: HomeScreen(),
     );
     
   }
 }
-
 // import 'package:e_com_bloc/view/OTP/email_auth_screen.dart';
 // import 'package:e_com_bloc/view/OTP/phone_auth_screen.dart';
 // import 'package:flutter/material.dart';
