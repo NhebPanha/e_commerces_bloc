@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(debugShowCheckedModeBanner: false,
     // home: SignInScreen()
     // home: GetStartScreen(),
-    // home: CheckoutScreen(),
-    home: ShippingAddress(),
+    home: CheckoutScreen(),
+    // home: ShippingAddress(),
     // home: HomeScreen(),
     );
     
