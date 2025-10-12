@@ -142,17 +142,12 @@ class LoginWithWidget extends StatelessWidget {
             margin: EdgeInsets.only(top: 20, left: 45),
             child: Row(
               children: [
-                Text(
-                  "Don't have an accoutnt?",
-                  style: TextStyle(fontSize: AppSize.s16),
-                ),
-                SizedBox(width: 8),
                 GestureDetector(
                   // onDoubleTap: ,
                   child: AppLabel(
                     text: txt,
                     size: AppSize.s16,
-                    color: AppColorsPath.black,
+                    color: AppColorsPath.grey,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

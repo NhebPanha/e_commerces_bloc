@@ -8,7 +8,7 @@ final class AppColorsPath {
   static const blue = Color(0xFF0000FF);
   static const black = Color(0xFF000000);
   static const white = Color(0xFFFFFFFF);
-  static const grey = Color(0xFF808080);
+  static const grey = Color.fromARGB(255, 155, 154, 154);
   static const yellow = Color(0xFFFFFF00);
   static const orange = Color(0xFFFFA500);
   static const purple = Color(0xFF998400);

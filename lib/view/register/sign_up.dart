@@ -12,18 +12,20 @@ class SignUp extends StatefulWidget {
   @override
   State<SignUp> createState() => _SignUpState();
 }
+
 class _SignUpState extends State<SignUp> {
   bool _obscurePassword = true;
   final _auth = FirebaseAuth.instance;
-  final _formkey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   final _usernameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   String? _errorMessage;
-  bool isChecked = false;
 
   Future<void> _signUp() async {
+    if (!_formKey.currentState!.validate()) return;
+
     setState(() => _errorMessage = null);
     try {
       await _auth.createUserWithEmailAndPassword(
@@ -33,15 +35,13 @@ class _SignUpState extends State<SignUp> {
       await _auth.currentUser?.updateDisplayName(
         _usernameController.text.trim(),
       );
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text("SignUp successful!")));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("SignUp successful!")),
+      );
       ConfigRouter.push(context, SignInScreen());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         setState(() => _errorMessage = "This email is already registered.");
-      } else if (e.code == 'weak-password') {
-        setState(() => _errorMessage = "Password is too weak.");
       } else if (e.code == 'weak-password') {
         setState(() => _errorMessage = "Password is too weak.");
       } else if (e.code == 'invalid-email') {
@@ -51,162 +51,147 @@ class _SignUpState extends State<SignUp> {
       }
     }
   }
+
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 70, right: 20, left: 20),
-          child: Form(
-            key: _formkey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center, 
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  child: Center(
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              physics: const BouncingScrollPhysics(),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: IntrinsicHeight(
+                  child: Form(
+                    key: _formKey,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        AppLabel(
+                        const SizedBox(height: 70),
+                        const AppLabel(
                           text: "Create Account",
                           size: AppSize.s25,
-                          color: AppColorsPath.black,
                         ),
-                        AppLabel(
-                          text: "fill your information below or register",
+                        const SizedBox(height: 5),
+                        const AppLabel(
+                          text: "Fill your information below or register with your social account",
                           size: AppSize.s15,
-                          color: AppColorsPath.black,
+                          textAlign: TextAlign.center,
                         ),
-                        AppLabel(
-                          text: "with your social account",
-                          size: AppSize.s15,
-                          color: AppColorsPath.black,
+                        const SizedBox(height: 20),
+
+                        // Username field
+                        Row(children: const [AppLabel(text: "Username", size: AppSize.s18)]),
+                        const SizedBox(height: 10),
+                        SizedBox(
+                          height: 50,
+                          child: TextFormField(
+                            controller: _usernameController,
+                            validator: (value) => value!.isEmpty ? "Enter username" : null,
+                            decoration: InputDecoration(
+                              hintText: "Enter Username",
+                              prefixIcon: const Icon(Icons.person_outlined, color: Colors.grey),
+                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                            ),
+                          ),
                         ),
+                        const SizedBox(height: 10),
+
+                        // Email field
+                        Row(children: const [AppLabel(text: "Email", size: AppSize.s18)]),
+                        const SizedBox(height: 10),
+                        SizedBox(
+                          height: 50,
+                          child: TextFormField(
+                            controller: _emailController,
+                            validator: (value) => value!.isEmpty ? "Enter email" : null,
+                            decoration: InputDecoration(
+                              hintText: "Enter Email",
+                              prefixIcon: const Icon(Icons.email_outlined, color: Colors.grey),
+                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+
+                        // Password field
+                        Row(children: const [AppLabel(text: "Password", size: AppSize.s18)]),
+                        const SizedBox(height: 10),
+                        SizedBox(
+                          height: 50,
+                          child: TextFormField(
+                            controller: _passwordController,
+                            obscureText: _obscurePassword,
+                            validator: (value) => value!.isEmpty ? "Enter password" : null,
+                            decoration: InputDecoration(
+                              hintText: "Enter Password",
+                              prefixIcon: const Icon(Icons.lock_outline, color: Colors.grey),
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                                  color: Colors.grey,
+                                ),
+                                onPressed: () {
+                                  setState(() => _obscurePassword = !_obscurePassword);
+                                },
+                              ),
+                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                            ),
+                          ),
+                        ),
+
+                        const SizedBox(height: 30),
+
+                        // Sign up button
+                        SizedBox(
+                          width: double.infinity,
+                          height: 50,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColorsPath.fromARGB,
+                              foregroundColor: AppColorsPath.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
+                            onPressed: _signUp,
+                            child: const AppLabel(
+                              text: "Sign Up",
+                              size: AppSize.s18,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+
+                        if (_errorMessage != null) ...[
+                          const SizedBox(height: 10),
+                          Text(_errorMessage!, style: const TextStyle(color: Colors.red)),
+                        ],
+                        SizedBox(height: 50),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => SignInScreen()),
+                          );
+                          },
+                          child: LoginWithWidget(
+                            txt: "Already have an account?  Log In",
+                            textColor: AppColorsPath.grey,
+                          ),
+                        ),
+                        SizedBox(height: 50),
                       ],
                     ),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(top: 10),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          AppLabel(text: "Username", size: AppSize.s18),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      SizedBox(
-                        height: 50,
-                        child: TextFormField(
-                          controller: _usernameController,
-                          decoration: InputDecoration(
-                            hintText: "Enter Username",
-                            prefixIcon: Icon(
-                              Icons.person_outlined,
-                              color: AppColorsPath.grey,
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      Row(
-                        children: [AppLabel(text: "Email", size: AppSize.s18)],
-                      ),
-                      const SizedBox(height: 10),
-                      SizedBox(
-                        height: 50,
-                        child: TextFormField(
-                          controller: _emailController,
-                          decoration: InputDecoration(
-                            hintText: "Enter Email",
-                            prefixIcon: Icon(
-                              Icons.email_outlined,
-                              color: AppColorsPath.grey,
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      Row(
-                        children: [
-                          AppLabel(text: "Password", size: AppSize.s18),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      SizedBox(
-                        height: 50,
-                        child: TextFormField(
-                          controller: _passwordController,
-                          obscureText: _obscurePassword, // hide/show
-                          decoration: InputDecoration(
-                            hintText: "Enter Password",
-                            prefixIcon: const Icon(
-                              Icons.lock_outline,
-                              color: Colors.grey,
-                            ),
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                _obscurePassword
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
-                                color: Colors.grey,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  _obscurePassword = !_obscurePassword;
-                                });
-                              },
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                
-                
-                SizedBox(height: 30),
-                Container(
-                  height: 50,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor:AppColorsPath.fromARGB,
-                      foregroundColor: AppColorsPath.white,
-                    ),
-                    onPressed: _signUp,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 100.0,vertical: 5),
-                      child: AppLabel(text:
-                        "Sign Up",
-                       size: AppSize.s18,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 20),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SignInScreen()),
-                    );
-                  },
-                  // child: Login_With(txt: "Login",textColor: AppColorsPath.fromARGB,),
-                ),
-              ],
-              //]
-            ),
-          ),
+              ),
+            );
+          },
         ),
       ),
     );
