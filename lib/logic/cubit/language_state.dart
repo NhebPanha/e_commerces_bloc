@@ -9,5 +9,6 @@ class LanguageLoaded extends LanguageState {
   final Locale locale;
   final String languagesType;
   final String lan;
+
   LanguageLoaded(this.locale, this.languagesType, this.lan);
 }

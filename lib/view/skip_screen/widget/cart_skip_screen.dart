@@ -1,7 +1,7 @@
-import 'package:e_com_bloc/data/models/skip_model/skip_model.dart';
 import 'package:e_com_bloc/components/app_colors_path.dart';
 import 'package:e_com_bloc/components/app_label.dart';
 import 'package:e_com_bloc/components/app_size.dart';
+import 'package:e_com_bloc/data/models/skip_model/skip_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

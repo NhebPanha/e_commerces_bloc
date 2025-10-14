@@ -1,52 +1,93 @@
-// // Dart models for the provided products JSON.
-// // Supports null-safety, immutable classes, copyWith, fromJson/toJson helpers,
-// // robust numeric parsing (int/double), and DateTime parsing.
+// To parse this JSON data, do
+//
+//     final productModel = productModelFromJson(jsonString);
 
-// import 'dart:convert';
+import 'dart:convert';
 
-// // Top-level helpers -----------------------------------------------------------
-// ProductFeedModel productFeedFromJson(String source) => ProductFeedModel.fromJson(json.decode(source) as Map<String, dynamic>);
+List<ProductModel> productModelFromJson(String str) => List<ProductModel>.from(json.decode(str).map((x) => ProductModel.fromJson(x)));
 
-// String productFeedToJson(ProductFeedModel feed) => json.encode(feed.toJson());
+String productModelToJson(List<ProductModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-// // Root container --------------------------------------------------------------
-// class ProductFeedModel {
-//   final List<ProductModel> products;
-//   final int total;
-//   final int skip;
-//   final int limit;
+class ProductModel {
+    int id;
+    String title;
+    String slug;
+    int price;
+    String description;
+    Category category;
+    List<String> images;
+    DateTime creationAt;
+    DateTime updatedAt;
 
-//   const ProductFeedModel({required this.products, required this.total, required this.skip, required this.limit});
+    ProductModel({
+        required this.id,
+        required this.title,
+        required this.slug,
+        required this.price,
+        required this.description,
+        required this.category,
+        required this.images,
+        required this.creationAt,
+        required this.updatedAt,
+    });
 
-//   factory ProductFeedModel.fromJson(Map<String, dynamic> json) {
-//     return ProductFeedModel(products: (json['products'] as List<dynamic>? ?? const []).map((e) => ProductModel.fromJson(e as Map<String, dynamic>)).toList(), total: (json['total'] as num? ?? 0).toInt(), skip: (json['skip'] as num? ?? 0).toInt(), limit: (json['limit'] as num? ?? 0).toInt());
-//   }
+    factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
+        id: json["id"] ?? 0,
+        title: json["title"]  ?? "",
+        slug: json["slug"] ?? "",
+        price: json["price"] ?? "",
+        description: json["description"] ?? "",
+        category: Category.fromJson(json["category"]),
+        images: List<String>.from(json["images"].map((x) => x)),
+        creationAt: DateTime.parse(json["creationAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+    );
 
-//   Map<String, dynamic> toJson() => {'products': products.map((e) => e.toJson()).toList(), 'total': total, 'skip': skip, 'limit': limit};
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "title": title,
+        "slug": slug,
+        "price": price,
+        "description": description,
+        "category": category.toJson(),
+        "images": List<dynamic>.from(images.map((x) => x)),
+        "creationAt": creationAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+    };
+}
 
-//   ProductFeedModel copyWith({List<ProductModel>? products, int? total, int? skip, int? limit}) => ProductFeedModel(products: products ?? this.products, total: total ?? this.total, skip: skip ?? this.skip, limit: limit ?? this.limit);
-// }
+class Category {
+    int id;
+    String name;
+    String slug;
+    String image;
+    DateTime creationAt;
+    DateTime updatedAt;
 
-// class ProductModel {
-//   final int id;
-//   final String title;
-//   final String description;
-//   final String category;
-//   final double price;
-//   final double discountPercentage;
-//   final double rating;
-//   final int stock;
-//   final String thumbnail;
+    Category({
+        required this.id,
+        required this.name,
+        required this.slug,
+        required this.image,
+        required this.creationAt,
+        required this.updatedAt,
+    });
 
-//   const ProductModel({required this.id, required this.title, required this.description, required this.category, required this.price, required this.discountPercentage, required this.rating, required this.stock, required this.thumbnail});
+    factory Category.fromJson(Map<String, dynamic> json) => Category(
+        id: json["id"] ?? 0,
+        name: json["name"] ?? "",
+        slug: json["slug"] ?? "",
+        image: json["image"] ?? "",
+        creationAt: DateTime.parse(json["creationAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+    );
 
-//   factory ProductModel.fromJson(Map<String, dynamic> json) {
-//     return ProductModel(id: (json['id'] as num).toInt(), title: json['title'] as String? ?? '', description: json['description'] as String? ?? '', category: json['category'] as String? ?? '', price: (json['price'] as num?)?.toDouble() ?? 0.0, discountPercentage: (json['discountPercentage'] as num?)?.toDouble() ?? 0.0, rating: (json['rating'] as num?)?.toDouble() ?? 0.0, stock: (json['stock'] as num?)?.toInt() ?? 0, thumbnail: json['thumbnail'] as String? ?? '');
-//   }
-
-//   Map<String, dynamic> toJson() => {'id': id, 'title': title, 'description': description, 'category': category, 'price': price, 'discountPercentage': discountPercentage, 'rating': rating, 'stock': stock, 'thumbnail': thumbnail};
-
-//   ProductModel copyWith({int? id, String? title, String? description, String? category, double? price, double? discountPercentage, double? rating, int? stock, String? thumbnail}) =>
-//       ProductModel(id: id ?? this.id, title: title ?? this.title, description: description ?? this.description, category: category ?? this.category, price: price ?? this.price, discountPercentage: discountPercentage ?? this.discountPercentage, rating: rating ?? this.rating, stock: stock ?? this.stock, thumbnail: thumbnail ?? this.thumbnail);
-// }
-
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "slug": slug,
+        "image": image,
+        "creationAt": creationAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+    };
+}

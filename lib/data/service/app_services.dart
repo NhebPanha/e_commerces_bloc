@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:e_com_bloc/configs/config_reader.dart';
 import 'package:e_com_bloc/data/models/error_model.dart';
 import 'package:e_com_bloc/utils/constants.dart';
-import '../../../configs/config_reader.dart';
 import 'check_internet_service.dart';
 import 'helper_service.dart';
 

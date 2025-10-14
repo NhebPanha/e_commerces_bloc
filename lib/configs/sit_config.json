@@ -1,5 +1,5 @@
 {
-   "host": "https://api.escuelajs.co",
+    "host": "https://api.escuelajs.co",
     "base_url": "https://api.escuelajs.co/",
     "root_api": "https://api.escuelajs.co/api/",
     "telegram_api": "",
@@ -10,3 +10,4 @@
     "android_google_map_key": "AIzaSyDm4tqKQjVcdqNlfuSgBNHK8NckmLohvz0",
     "iOS_google_map_key": "AIzaSyBSO2MNK50ekF7I8Ci0uFNOrjdCPw80WFE"
 }
+

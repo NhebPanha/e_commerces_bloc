@@ -13,14 +13,21 @@ class _SentOtpPhonenumberState extends State<SentOtpPhonenumber> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController _phoneController = TextEditingController();
 
-  String _selectedCode = "+855"; // default country code
+  // Default country code
+  String _selectedCode = "+855";
   String? _statusMessage;
 
-  /// Send OTP dynamically
+  // Map of countries for dropdown
+  final Map<String, String> countries = {
+    "+855": "🇰🇭 Cambodia",
+    "+1": "🇺🇸 USA",
+    "+44": "🇬🇧 UK",
+  };
+
+  /// Send OTP function
   Future<void> _sendOTP() async {
     final phone = _phoneController.text.trim();
 
-    // Validate user input
     if (phone.isEmpty) {
       setState(() {
         _statusMessage = "Please enter your phone number!";
@@ -44,6 +51,8 @@ class _SentOtpPhonenumberState extends State<SentOtpPhonenumber> {
           setState(() {
             _statusMessage = "Verification failed: ${e.message}";
           });
+          print("FirebaseAuthException code: ${e.code}");
+          print("FirebaseAuthException message: ${e.message}");
         },
         codeSent: (String verificationId, int? resendToken) {
           setState(() {
@@ -52,10 +61,11 @@ class _SentOtpPhonenumberState extends State<SentOtpPhonenumber> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => VerifyCodePage(
-                verificationId: verificationId,
-                phoneNumber: fullPhoneNumber,
-              ),
+              builder:
+                  (context) => VerifyCodePage(
+                    verificationId: verificationId,
+                    phoneNumber: fullPhoneNumber,
+                  ),
             ),
           );
         },
@@ -103,20 +113,15 @@ class _SentOtpPhonenumberState extends State<SentOtpPhonenumber> {
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<String>(
                       value: _selectedCode,
-                      items: const [
-                        DropdownMenuItem(
-                          value: "+855",
-                          child: Text("🇰🇭 +855"),
-                        ),
-                        DropdownMenuItem(
-                          value: "+1",
-                          child: Text("🇺🇸 +1"),
-                        ),
-                        DropdownMenuItem(
-                          value: "+1",
-                          child: Text("🇨🇦 +1"),
-                        ),
-                      ],
+                      items:
+                          countries.entries
+                              .map(
+                                (e) => DropdownMenuItem(
+                                  value: e.key,
+                                  child: Text("${e.value} ${e.key}"),
+                                ),
+                              )
+                              .toList(),
                       onChanged: (value) {
                         setState(() {
                           _selectedCode = value!;
@@ -132,10 +137,7 @@ class _SentOtpPhonenumberState extends State<SentOtpPhonenumber> {
               width: 180,
               child: ElevatedButton(
                 onPressed: _sendOTP,
-                child: const Text(
-                  "Send OTP",
-                  style: TextStyle(fontSize: 18),
-                ),
+                child: const Text("Send OTP", style: TextStyle(fontSize: 18)),
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 50),
                 ),
@@ -146,9 +148,10 @@ class _SentOtpPhonenumberState extends State<SentOtpPhonenumber> {
               Text(
                 _statusMessage!,
                 style: TextStyle(
-                  color: _statusMessage!.startsWith("OTP sent")
-                      ? Colors.green
-                      : Colors.red,
+                  color:
+                      _statusMessage!.startsWith("OTP sent")
+                          ? Colors.green
+                          : Colors.red,
                 ),
               ),
             ],
